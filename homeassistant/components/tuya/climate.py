@@ -142,10 +142,10 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
         # If both temperature values for celsius and fahrenheit are present,
         # use whatever the device is set to, with a fallback to celsius.
         prefered_temperature_unit = None
-        if all(
+        if any(
             dpcode in device.status
             for dpcode in (DPCode.TEMP_CURRENT, DPCode.TEMP_CURRENT_F)
-        ) or all(
+        ) or any(
             dpcode in device.status for dpcode in (DPCode.TEMP_SET, DPCode.TEMP_SET_F)
         ):
             prefered_temperature_unit = TEMP_CELSIUS
